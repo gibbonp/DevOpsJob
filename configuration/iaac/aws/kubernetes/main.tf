@@ -9,7 +9,7 @@ terraform {
   backend "s3" {
     bucket = "mybucket" # Will be overridden from build
     key    = "path/to/my/key" # Will be overridden from build
-    region = "us-east-1"
+    region = "us-east-2"
   }
 }
 
@@ -29,9 +29,9 @@ provider "kubernetes" {
  // version                = "~> 1.9"
 }
 
-module "aforo255-cluster4" {
+module "aforo255-cluster-devops" {
   source          = "terraform-aws-modules/eks/aws"
-  cluster_name    = "aforo255-cluster4"
+  cluster_name    = "aforo255-cluster-devops"
   cluster_version = "1.17"
   subnets         = ["subnet-adfa07f2", "subnet-a3c23d82"]  #CHANGE # Donot choose subnet from us-east-1e
   #subnets = data.aws_subnet_ids.subnets.ids
@@ -48,11 +48,11 @@ worker_groups = [
 }
 
 data "aws_eks_cluster" "cluster" {
-  name = module.aforo255-cluster4.cluster_id
+  name = module.aforo255-cluster-devops.cluster_id
 }
 
 data "aws_eks_cluster_auth" "cluster" {
-  name = module.aforo255-cluster4.cluster_id
+  name = module.aforo255-cluster-devops.cluster_id
 }
 
 
@@ -77,7 +77,7 @@ resource "kubernetes_cluster_role_binding" "example" {
 
 # Needed to set the default region
 provider "aws" {
-  region  = "us-east-1"
+  region  = "us-east-2"
 }
 
 resource "aws_iam_role" "test_role_dev" {
