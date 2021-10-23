@@ -29,7 +29,7 @@ provider "kubernetes" {
  // version                = "~> 1.9"
 }
 
-module "aforo255-clusterdm {
+module "aforo255-clusterdm" {
   source          = "terraform-aws-modules/eks/aws"
   cluster_name    = "aforo255-clusterdm"
   cluster_version = "1.17"
