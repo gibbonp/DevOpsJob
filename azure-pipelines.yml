@@ -17,3 +17,13 @@ steps:
     echo Add other tasks to build, test, and deploy your project.
     echo See https://aka.ms/yaml
   displayName: 'Run a multi-line script'
+- task: TerraformTaskV2@2
+  inputs:
+    provider: 'azurerm'
+    command: 'init'
+    workingDirectory: '$(System.DefaultWorkingDirectory)//DevOpsJob'
+    backendServiceArm: 'Developer (969ebf0b-f457-4e4a-9d16-4f9c2c1f5714)'
+    backendAzureRmResourceGroupName: 'DevOps'
+    backendAzureRmStorageAccountName: 'azurestoragedevops'
+    backendAzureRmContainerName: 'devops-aforo255'
+    backendAzureRmKey: 'azure-terraform.tfstate'
