@@ -29,9 +29,9 @@ provider "kubernetes" {
  // version                = "~> 1.9"
 }
 
-module "aforo255-clusterlp {
+module "devops-clusterpg {
   source          = "terraform-aws-modules/eks/aws"
-  cluster_name    = "aforo255-clusterlp"
+  cluster_name    = "devops-clustergp"
   cluster_version = "1.17"
   subnets         = ["subnet-0c635487e8dc6af78", "subnet-0481a7b389cef1f8b"]  #CHANGE # Donot choose subnet from us-east-1e
   #subnets = data.aws_subnet_ids.subnets.ids
@@ -48,11 +48,11 @@ worker_groups = [
 }
 
 data "aws_eks_cluster" "cluster" {
-  name = module.aforo255-clusterlp.cluster_id
+  name = module.devops-clustergp.cluster_id
 }
 
 data "aws_eks_cluster_auth" "cluster" {
-  name = module.aforo255-clusterlp.cluster_id
+  name = module.devops-clustergp.cluster_id
 }
 
 
